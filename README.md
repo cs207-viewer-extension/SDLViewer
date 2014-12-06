@@ -17,7 +17,7 @@ Integrating this extension with your project is very easy. It only takes 3 steps
 
 Viewer::Listener has 5 virtual member function that you have to implement.
 
-================IMAGE
+![](https://raw.githubusercontent.com/cs207-viewer-extension/SDLViewer/master/website-images/1.png)
 
 **handle_keyboard_event**: Called every time a keyboard key is pressed. c is the pressed key.  
 **handle_mouse_left_click_event**: Called when the left button of the mouse is clicked.  
@@ -27,7 +27,6 @@ Viewer::Listener has 5 virtual member function that you have to implement.
 **handle**: Low level handle event call for every mouse and keyboard event including all the above. The above methods are convenient abstractions of SDL_event objects.  
 
 
-
 Note: In this example, a constructor that takes a reference to a Graph was added as a convenience and quick and easy way to interact with the graph when the “callback methods” are called. In your implementation, you can create any number of constructors that take any object types you may need.
 
 
@@ -35,7 +34,7 @@ Note: In this example, a constructor that takes a reference to a Graph was added
 
 Use smart pointers to wrap your EventListener object and add it to the viewer using the add_listener methods..
 
-================IMAGE
+![](https://raw.githubusercontent.com/cs207-viewer-extension/SDLViewer/master/website-images/2.png)
 
 
 ## 3) Implement your custom logic in the callback methods.
@@ -46,5 +45,4 @@ You can implement far more complex interactions, but this illustrates how easy a
 
 You can create and add many EventListener that encapsulate different logic for each supported event or create one that does it all, your choice.
 
-
-================IMAGE
+![](https://raw.githubusercontent.com/cs207-viewer-extension/SDLViewer/master/website-images/3.png)
