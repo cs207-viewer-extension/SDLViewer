@@ -7,6 +7,7 @@ This Views Extension allows you to interact with the SDLViewer using your keyboa
 + Mouse left/right click  
 + Mouse movement events  
 + Keyboard events  
++ Select Nodes in the Viewer  
 
 You can implement any functionality you need when any of these events is triggered, like update nodes in a Graph or Mesh, change forces or constraints in a simulation, rotate or zoom the viewer, alter the time of the simulation, just to list a few.
 
@@ -46,3 +47,29 @@ You can implement far more complex interactions, but this illustrates how easy a
 You can create and add many EventListener that encapsulate different logic for each supported event or create one that does it all, your choice.
 
 ![](https://raw.githubusercontent.com/cs207-viewer-extension/SDLViewer/master/website-images/3.png)
+
+
+
+# Get Started
+
+We provide you with 3 examples to get you up and running very quickly.
+
+Get started with this extensions in minutes. Run an example that allows you to interact with a plane in all the axis.
+
+Compile and run the example:
+
+`clear && make viewer_keyboard_example && ./viewer_keyboard_example data/grid0.nodes data/grid0.tets`
+
+Play with the keys: w, z, a, s, o and l.
+
+![](https://raw.githubusercontent.com/cs207-viewer-extension/SDLViewer/master/website-images/4.png)
+
+
+
+This is an example of **viewer_node_selection_example.cpp** where we select and transform some nodes:
+
+![](https://raw.githubusercontent.com/cs207-viewer-extension/SDLViewer/master/website-images/5.png)
+
+
+
+
