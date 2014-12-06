@@ -89,8 +89,8 @@ class SDLViewer {
   // Colors for picking algorithm
   std::vector<Color> pick_colors_;
   
-  //Color counter, starts @ black (for picking)
-  unsigned char gColorID[3] = {0, 0, 0};
+  //Color counter
+  int ID = 1;
 
   // Edges (index pairs)
   std::vector<unsigned> edges_;
@@ -196,6 +196,8 @@ class SDLViewer {
       edges_.clear();
       label_.clear();
       pick_colors_.clear();
+		 ID = 1;
+      
     }
     request_render();
   }
@@ -351,20 +353,11 @@ class SDLViewer {
           colors_.push_back(color_function(n));
           
           //Add new color to the vector of colors used for picking
-          pick_colors_.push_back(Color::make_rgb(gColorID[0]/255.0, gColorID[1]/255.0,gColorID[2]/255.0));
- 
- 					//Update color counter;
-           gColorID[0]++;
-           if(gColorID[0] > 255)
-           {
-                gColorID[0] = 0;
-                gColorID[1]++;
-                if(gColorID[1] > 255)
-                {
-                     gColorID[1] = 0;
-                     gColorID[2]++;
-                }
-           }
+          pick_colors_.push_back (Color::make_rgb((ID % 256)/255.0, ((ID / 256) % 256)/255.0,((ID / (256 * 256)) % 256)/255.0 ));
+       
+          //Update color counter	
+          	ID++;
+
           
         } else {          // node already exists and not updated
           unsigned index = r.first->second;
@@ -812,9 +805,10 @@ class SDLViewer {
     glDisable(GL_TEXTURE_2D);
     glDisable(GL_FOG);
     glDisable(GL_LIGHTING);
+    glDisable(GL_POINT_SMOOTH);
+    glDisable(GL_MULTISAMPLE);
       
-    //glOrtho(0, window_width_, 0, window_height_, -1, 1);
-    
+ 
     //Variable to store pixel read in
     GLfloat pixel[3];
 
@@ -843,6 +837,14 @@ class SDLViewer {
     glDisableClientState(GL_VERTEX_ARRAY);
 
 
+		// Make visible
+//     SDL_GL_SwapBuffers();
+//     CS207::sleep(2);
+//     
+//     SDL_GL_SwapBuffers();
+//     
+    
+
 		//Read from front buffer (while debugging) and from back buffer (for implementation)
 		glReadBuffer(GL_BACK);
 		
@@ -855,8 +857,9 @@ class SDLViewer {
 		//Find index of pick_colors (and thus node) with the same color
 		for(unsigned int i=0; i < pick_colors_.size(); i++){
 			Color c = pick_colors_[i];
-			//std::cerr << "Color for node " << i <<  " is " << c.r << " ,  " << c.g <<  " , " << c.b << std::endl; 
+			
    		if(c.r == pixel[0] && c.g == pixel[1] && c.b == pixel[2]){
+   		   std::cerr << "Color for node " << i <<  " is " << c.r << " ,  " << c.g <<  " , " << c.b << std::endl; 
    		  //std::cout << "Found match" << std::endl;
    		  //Restore Fog Settings
     		glEnable(GL_FOG);    
@@ -864,8 +867,10 @@ class SDLViewer {
    		}		
 		}
 
+
 		//Restore Fog Settings
     glEnable(GL_FOG);
+    glEnable(GL_POINT_SMOOTH);
     return -1;
   }
 
