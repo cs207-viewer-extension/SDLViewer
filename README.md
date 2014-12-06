@@ -17,7 +17,7 @@ Integrating this extension with your project is very easy. It only takes 3 steps
 
 Viewer::Listener has 5 virtual member function that you have to implement.
 
-
+================IMAGE
 
 **handle_keyboard_event**: Called every time a keyboard key is pressed. c is the pressed key.  
 **handle_mouse_left_click_event**: Called when the left button of the mouse is clicked.  
@@ -31,3 +31,20 @@ Viewer::Listener has 5 virtual member function that you have to implement.
 Note: In this example, a constructor that takes a reference to a Graph was added as a convenience and quick and easy way to interact with the graph when the “callback methods” are called. In your implementation, you can create any number of constructors that take any object types you may need.
 
 
+## 2) Create an instance of EventListener and add it as a callback to viewer.
+
+Use smart pointers to wrap your EventListener object and add it to the viewer using the add_listener methods..
+
+================IMAGE
+
+
+## 3) Implement your custom logic in the callback methods.
+
+In the following example you can see how easy is to change the position of all nodes in a Graph in “x” direction by adding 0.05 to the initial values when the key “z” is pressed.
+
+You can implement far more complex interactions, but this illustrates how easy and clean is to add interactivity to your simulations.
+
+You can create and add many EventListener that encapsulate different logic for each supported event or create one that does it all, your choice.
+
+
+================IMAGE
