@@ -72,4 +72,4 @@ This is an example of **viewer_node_selection_example.cpp** where we select and 
 
 
 
-
+[![](https://raw.githubusercontent.com/cs207-viewer-extension/SDLViewer/master/website-images/video.png)](https://www.youtube.com/watch?v=TxxtzTB2XiE&feature=youtu.be)
